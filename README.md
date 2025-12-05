@@ -4,4 +4,8 @@ This directory contains all the projects that are to be done in The Odin Project
 
 1. odin-recipes
 
-This is the first project in the foundations course after doing some html basics.
+   -This is the first project in the foundations course after doing some html basics.
+
+2. Landing Page
+
+   -This is the project after learning html and css basics in foundations.
