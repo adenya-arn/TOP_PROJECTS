@@ -1,0 +1,120 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ html,
+ body {
+     margin: 0;
+     padding: 0;
+ }
+
+
+
+ body {
+     font-family: roboto;
+ }
+
+ .hero,
+ footer,
+ header {
+     background-color: #1f2937;
+     color: white;
+ }
+
+ .content h1 {
+     font-weight: 900;
+     font-size: 48px;
+     color: #f9faf8;
+ }
+
+ .content p {
+     color: #e5e7eb;
+     font-size: 18px;
+ }
+
+ .logo {
+     font-size: 24px;
+     color: #f9faf8;
+ }
+
+ button,
+ .final {
+     background-color: #3882f6;
+     color: white;
+     padding: 0;
+
+ }
+
+ blockquote {
+     background-color: #e5e7eb;
+     color: #1f2937;
+     font-weight: 300;
+     font-size: 36px;
+ }
+
+ .cards {
+     font-size: 36px;
+     color: #1f2937;
+     font-weight: 900;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-wrap: wrap;
+     flex-direction: column;
+ }
+
+ .card {
+     margin: 5px;
+     font-size: 18px;
+     display: flex;
+     gap: 16px;
+ }
+
+ img {
+     height: 300px;
+     width: auto;
+ }
+
+ header {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ ul {
+     display: flex;
+     gap: 16px;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+ }
+
+ footer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ button {
+     border-radius: 5px;
+ }
+
+ section {
+     width: 100%;
+     display: block
+ }
+
+ blockquote {
+     margin: 0;
+     padding: 60px 200px;
+ }
+
+ blockquote p {
+     margin-bottom: 20px;
+ }
+
+ blockquote p:last-child {
+     margin-bottom: 0;
+     text-align: right;
+ }
