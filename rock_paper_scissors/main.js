@@ -11,11 +11,11 @@ const getComputerChoice = () => {
   }
 };
 
-const getHumanChoice = () => {
-  let choice = String(prompt("Write Rock, Paper or Scissors. ")).toLowerCase();
+// const getHumanChoice = () => {
+//   let choice = String(prompt("Write Rock, Paper or Scissors. ")).toLowerCase();
 
-  return choice;
-};
+//   return choice;
+// };
 
 let humanScore = 0;
 let computerScore = 0;
@@ -53,17 +53,52 @@ const playRound = (humanChoice, computerChoice) => {
   }
 };
 
-const playGame = () => {
-  while (round < 5) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+const ul = document.querySelector("ul");
+const div = document.querySelector("div");
+const p = document.createElement("p");
+
+const clicked = (evnt) => {
+  if (humanScore >= 5 || computerScore >= 5) return;
+  const btn = evnt.target;
+
+  let humanSelection = "";
+
+  switch (btn.id) {
+    case "btn1":
+      humanSelection = "rock";
+      break;
+    case "btn2":
+      humanSelection = "paper";
+      break;
+    case "btn3":
+      humanSelection = "scissors";
+      break;
+    default:
+      return;
   }
-  if (humanScore > computerScore) {
-    return `You win ${humanScore} : ${computerScore}`;
-  } else if (humanScore < computerScore) {
-    return `Computer wins ${computerScore}: ${humanScore}`;
+
+  const computerSelection = getComputerChoice();
+
+  playRound(humanSelection, computerSelection);
+  const roundResults = document.createElement("li");
+  roundResults.textContent = `You chose ${humanSelection}, computer chose ${computerSelection}.`;
+  ul.appendChild(roundResults);
+
+  const scores = document.createElement("li");
+  scores.textContent = `Score: ${humanScore} - ${computerScore}`;
+  ul.appendChild(scores);
+
+  if (humanScore >= 5 || computerScore >= 5) {
+    const div = document.querySelector("div");
+    const p = document.createElement("p");
+    p.textContent = `The winner is: ${humanScore > computerScore ? "YOU " : "COMPUTER"}`;
+
+    div.appendChild(p);
   }
 };
 
-console.log(playGame());
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", clicked);
+});
