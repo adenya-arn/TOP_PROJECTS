@@ -1,0 +1,13 @@
+#container {
+    display: flex;
+    width: 800px;
+    flex-wrap: wrap;
+}
+
+.grid {
+    box-sizing: border-box;
+    border: 2px solid black;
+    height: 200px;
+    width: 200px;
+
+}
