@@ -1,0 +1,13 @@
+.calc {
+    display: flex;
+    width: 40vmin;
+    height: 30vmin;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+button {
+    height: 100px;
+    width: 100px
+}

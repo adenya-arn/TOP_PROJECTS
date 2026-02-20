@@ -1,105 +1,112 @@
-const add = ([a, b = 0]) => {
-  let answer = a + b;
-  b = answer;
-  return b;
-};
+const add = (a, b) => a + b;
 
-const subtract = ([a, b = 0]) => a - b;
+const subtract = (a, b) => a - b;
 
-const multiply = ([a, b = 1]) => a * b;
+const multiply = (a, b) => a * b;
 
-const divide = ([a, b = 1]) => {
-  if (b === 0) return "SYNTAX ERROR";
+const divide = (a, b) => {
+  if (b === 0) return "NGORI BUDA  😏";
   return a / b;
 };
-let arrayToOperate = [];
 
-const calculate = [];
+let firstNumber = null;
+let operator = null;
+let currentInput = "";
+let shouldResetDisplay = false;
 
 const signs = document.querySelector(".signs");
 
-const result = 0;
-
 signs.addEventListener("click", (evnt) => {
-  const sign = evnt.target;
-  const number = Number(arrayToOperate.join(""));
-  calculate.push(number);
-  arrayToOperate = [];
+  const sign = evnt.target.id;
 
-  if (sign.id === "equal") {
-    if (calculate.length === 1) return calculate[0];
-    return result;
-  } else if (sign.id === "plus") {
-  } else if (sign.id === "minus") {
-    calculate.push(Number);
-    return (result = subtract(calculate));
-  } else if (sign.id === "multiply") {
-    calculate.push(Number);
-    return (result = multiply(calculate));
-  } else if (sign.id === "divide") {
-    calculate.push(Number);
-    return divide(calculate);
+  if (!evnt.target.matches("button")) return;
+
+  //pressing equal sign
+  if (sign === "equal") {
+    if (firstNumber === null || operator === null || currentInput === "")
+      return;
+    //console.log("no second");
+
+    const secondNumber = Number(currentInput);
+    const result = operateCalculation(firstNumber, operator, secondNumber);
+
+    if (typeof result === "number") {
+      firstNumber = Number(result.toFixed(5));
+    } else {
+      firstNumber = result;
+    }
+    console.log("Result:", result);
+
+    firstNumber = result;
+    currentInput = "";
+    operator = null;
+    shouldResetDisplay = true;
+    return;
   }
 
-  // if (sign.id === "plus") {
-  //   let result = add(calculate);
-  //   console.log(result);
-  // }
-  console.log(calculate);
+  //stores new operator for later if user presses an operator first
+  if (currentInput === "" && firstNumber !== null) {
+    operator = sign;
+    return;
+  }
+
+  // checks if it's first operation if it is, firstNumber will be null so it will be set,
+  // else it will do the operation with the answer being set to the first number, we already got a firstNumber f
+  //from line 39
+  if (firstNumber === null) {
+    firstNumber = Number(currentInput);
+  } else {
+    firstNumber = operateCalculation(
+      firstNumber,
+      operator,
+      Number(currentInput),
+    );
+    console.log("Intermediate Result:", firstNumber);
+  }
+  operator = sign;
+  currentInput = "";
 });
 
 const operate = (evnt) => {
-  const button = evnt.target;
-  let number = "";
+  if (!evnt.target.matches("button")) return;
 
-  switch (button.id) {
-    case "btn1":
-      number = 1;
-      arrayToOperate.push(number);
-      break;
-    case "btn2":
-      number = 2;
-      arrayToOperate.push(number);
-      break;
-    case "btn3":
-      number = 3;
-      arrayToOperate.push(number);
-      break;
-    case "btn4":
-      number = 4;
-      arrayToOperate.push(number);
-      break;
-    case "btn5":
-      number = 5;
-      arrayToOperate.push(number);
-      break;
-    case "btn6":
-      number = 6;
-      arrayToOperate.push(number);
-      break;
-    case "btn7":
-      number = 7;
-      arrayToOperate.push(number);
-      break;
-    case "btn8":
-      number = 8;
-      arrayToOperate.push(number);
-      break;
-    case "btn9":
-      number = 9;
-      arrayToOperate.push(number);
-      break;
-    case "btn0":
-      number = 0;
-      arrayToOperate.push(number);
-      break;
+  const value = evnt.target.textContent;
+  //to prevent multiple decimals
+  if (value === "." && currentInput.includes(".")) return;
+
+  //If result was shown reset these two
+  if (shouldResetDisplay) {
+    currentInput = "";
+    shouldResetDisplay = false;
   }
-
-  // console.log(number);
-  // console.log(arrayToOperate);
-  // console.log(toCalculate);
+  currentInput += value;
+  console.log("Current Input", currentInput);
 };
 
 const inputs = document.querySelector(".numbers");
 
 inputs.addEventListener("click", operate);
+
+function operateCalculation(a, operator, b) {
+  switch (operator) {
+    case "plus":
+      return add(a, b);
+    case "minus":
+      return subtract(a, b);
+    case "multiply":
+      return multiply(a, b);
+    case "divide":
+      return divide(a, b);
+  }
+}
+
+const clearButton = document.querySelector("#clear");
+
+clearButton.addEventListener("click", () => {
+  firstNumber = null;
+  operator = null;
+  currentInput = "";
+  shouldResetDisplay = false;
+
+  console.log("Calculator reset");
+});
