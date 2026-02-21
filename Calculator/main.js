@@ -14,7 +14,13 @@ let operator = null;
 let currentInput = "";
 let shouldResetDisplay = false;
 
+const decimalBtn = document.querySelector("#decimal");
+const display = document.querySelector("#display");
 const signs = document.querySelector(".signs");
+
+function updateDisplay(value) {
+  display.textContent = value === "" ? "0" : value;
+}
 
 signs.addEventListener("click", (evnt) => {
   const sign = evnt.target.id;
@@ -28,6 +34,7 @@ signs.addEventListener("click", (evnt) => {
     //console.log("no second");
 
     const secondNumber = Number(currentInput);
+    if (isNaN(secondNumber)) return;
     const result = operateCalculation(firstNumber, operator, secondNumber);
 
     if (typeof result === "number") {
@@ -37,8 +44,9 @@ signs.addEventListener("click", (evnt) => {
     }
     console.log("Result:", result);
 
-    firstNumber = result;
+    updateDisplay(firstNumber);
     currentInput = "";
+    decimalBtn.disabled = false;
     operator = null;
     shouldResetDisplay = true;
     return;
@@ -56,6 +64,8 @@ signs.addEventListener("click", (evnt) => {
   if (firstNumber === null) {
     firstNumber = Number(currentInput);
   } else {
+    if (typeof firstNumber !== "number") return;
+
     firstNumber = operateCalculation(
       firstNumber,
       operator,
@@ -65,6 +75,7 @@ signs.addEventListener("click", (evnt) => {
   }
   operator = sign;
   currentInput = "";
+  decimalBtn.disabled = false;
 });
 
 const operate = (evnt) => {
@@ -77,10 +88,17 @@ const operate = (evnt) => {
   //If result was shown reset these two
   if (shouldResetDisplay) {
     currentInput = "";
+    // firstNumber = null;
     shouldResetDisplay = false;
   }
   currentInput += value;
+  updateDisplay(currentInput);
   console.log("Current Input", currentInput);
+  if (currentInput.includes(".")) {
+    decimalBtn.disabled = true;
+  } else {
+    decimalBtn.disabled = false;
+  }
 };
 
 const inputs = document.querySelector(".numbers");
@@ -97,6 +115,8 @@ function operateCalculation(a, operator, b) {
       return multiply(a, b);
     case "divide":
       return divide(a, b);
+    default:
+      return a;
   }
 }
 
@@ -107,6 +127,52 @@ clearButton.addEventListener("click", () => {
   operator = null;
   currentInput = "";
   shouldResetDisplay = false;
-
+  updateDisplay("0");
+  decimalBtn.disabled = false;
   console.log("Calculator reset");
+});
+
+const backSpaceBtn = document.querySelector("#backspace");
+
+backSpaceBtn.addEventListener("click", () => {
+  if (shouldResetDisplay) return;
+
+  currentInput = currentInput.slice(0, -1);
+
+  updateDisplay(currentInput || "0");
+
+  if (!currentInput.includes(".")) {
+    decimalBtn.disabled = false;
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key;
+
+  // Map keyboard keys to button IDs
+  const keyMap = {
+    "+": "plus",
+    "-": "minus",
+    "*": "multiply",
+    "/": "divide",
+    Enter: "equal",
+    "=": "equal",
+    Backspace: "backspace",
+    ".": "decimal",
+  };
+
+  // If it's a number (0–9)
+  if (!isNaN(key) && key !== " ") {
+    const button = [...document.querySelectorAll(".numbers button")].find(
+      (btn) => btn.textContent === key,
+    );
+
+    if (button) button.click();
+  }
+
+  // If it's an operator or special key
+  if (keyMap[key]) {
+    const button = document.getElementById(keyMap[key]);
+    if (button) button.click();
+  }
 });
