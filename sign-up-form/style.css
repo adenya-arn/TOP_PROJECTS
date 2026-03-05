@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Norse";
+    src: url("Norse-Bold\(2\).otf");
+}
+
+body {
+    min-height: 100vh;
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+/* .logoSide,
+.rightSide {
+    flex: 1;
+} */
+
+button {
+    background-color: #596D48;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: auto;
+    display: block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+a {
+    color: #596D48;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+a:visited {
+    color: red;
+}
+
+.logoSide {
+    background-image: url("halie-west-F2927oeFqVs-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    flex: 1;
+}
+
+/* 
+h1 {
+    font-family: "Norse", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+} */
+
+#password:invalid {
+    color: red;
+}
+
+input[type="password"]:invalid {
+    border: 1px solid red
+}
+
+.logo {
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    margin-top: 150px;
+}
+
+.logo img {
+    height: 80px;
+}
+
+.logo h1 {
+    font-family: "Norse";
+    font-size: 60px;
+    color: white;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 40px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    display: block;
+    width: 100%;
+    border: 1px solid #E5E7EB;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid blue;
+    box-shadow: 0 0 5px rgba 0 0 255, 0.4;
+}
+
+.rightSide {
+    background-color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    gap: 30px;
+    flex: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+}
+
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 30px;
+
+}
+
+p {
+    font-weight: 900;
+}
