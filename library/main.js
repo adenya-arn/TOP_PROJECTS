@@ -38,6 +38,12 @@ console.log(myLibrary);
 
 //DOM manipulation
 const container = document.querySelector(".container");
+
+const addBookBtn = document.createElement("button");
+addBookBtn.classList.add("addBookBtn");
+addBookBtn.textContent = "New Book";
+container.append(addBookBtn);
+
 const bookCard = document.querySelector(".bookCard");
 const ul = document.createElement("ul");
 bookCard.appendChild(ul);
@@ -52,11 +58,11 @@ myLibrary.forEach((element) => {
 
 //form to add a new book
 
-const addBook = document.querySelector("#addBook");
+// const addBook = document.querySelector("#addBook");
 const form = document.createElement("form");
 
 const addBookForm = () => {
   container.appendChild(form);
   input.classList.add("Author");
 };
-addBook.addEventListener("click", addBookForm);
+addBookBtn.addEventListener("click", addBookForm);
