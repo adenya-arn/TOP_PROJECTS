@@ -40,7 +40,6 @@ const container = document.querySelector(".container");
 const addBookBtn = document.createElement("button");
 addBookBtn.classList.add("addBookBtn");
 addBookBtn.textContent = "New Book";
-
 container.appendChild(addBookBtn);
 
 //displaying books
@@ -54,50 +53,43 @@ function displayBooks() {
     bookList.append(bookCard);
   });
 }
+
 function createBookCard(book) {
   const infoDiv = document.createElement("div");
   infoDiv.classList.add("infoDiv");
+
   const actionsDiv = document.createElement("div");
   actionsDiv.classList.add("actionsDiv");
 
   const bookCard = document.createElement("div");
   bookCard.classList.add("bookCard");
+  bookCard.dataset.id = book.id;
 
   const bookTitle = document.createElement("p");
-  bookTitle.textContent = `Title: ${book.title};`;
+  bookTitle.textContent = `Title: ${book.title}`;
 
   const bookAuthor = document.createElement("p");
   bookAuthor.textContent = `Author: ${book.author}`;
 
   const bookPages = document.createElement("p");
-  bookPages.textContent = `Pages: ${book.pages === undefined || book.pages === null ? "N/A" : book.pages}`;
+  bookPages.textContent = `Pages: ${book.pages || "N/A"}`;
 
   const read = document.createElement("p");
   read.textContent = book.read ? "Read" : "Not Read";
+
   bookCard.dataset.id = book.id;
+
   infoDiv.append(bookTitle, bookAuthor, bookPages, read);
 
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Remove";
-
-  removeBtn.addEventListener("click", () => {
-    const id = bookCard.dataset.id;
-
-    myLibrary = myLibrary.filter((b) => b.id !== id);
-
-    displayBooks();
-  });
+  removeBtn.dataset.id = book.id;
+  removeBtn.dataset.action = "remove";
 
   const toggleBtn = document.createElement("button");
   toggleBtn.textContent = book.read ? "Mark as unread" : "Mark as read";
-
-  toggleBtn.addEventListener("click", () => {
-    const id = bookCard.dataset.id;
-    const foundBook = myLibrary.find((book) => book.id === id);
-    if (!foundBook) return alert("Book unavailable");
-    foundBook.toggleRead();
-    displayBooks();
-  });
+  toggleBtn.dataset.action = "toggle";
+  toggleBtn.dataset.id = book.id;
 
   actionsDiv.append(removeBtn, toggleBtn);
   bookCard.append(infoDiv, actionsDiv);
@@ -197,5 +189,23 @@ const addBookForm = () => {
 
 addBookBtn.addEventListener("click", addBookForm);
 
+//Event delegation
+bookList.addEventListener("click", (evnt) => {
+  const action = evnt.target.dataset.action;
+  const id = evnt.target.dataset.id;
+
+  if (!action || !id) return;
+
+  if (action === "toggle") {
+    const book = myLibrary.find((book) => book.id === id);
+    if (!book) return;
+
+    book.toggleRead();
+  }
+  if (action === "remove") {
+    myLibrary = myLibrary.filter((book) => book.id !== id);
+  }
+  displayBooks();
+});
 // console.log(myLibrary);
 displayBooks();
