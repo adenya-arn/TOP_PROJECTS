@@ -2,6 +2,21 @@
     background-color: beige;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: oblique;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    display: flex;
+}
+
+
+.bookCard div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.bookCard button {
+    margin-top: 0.5rem;
 }
 
 input:focus {
@@ -14,4 +29,9 @@ form {
     flex-direction: column;
     width: 50vmax;
     height: 50vmax;
+}
+
+legend {
+    display: flex;
+
 }
