@@ -1,37 +1,122 @@
-.bookCard {
-    background-color: beige;
+* {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: oblique;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 10px;
-    display: flex;
 }
 
+body {
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
 
-.bookCard div {
+.container {
+    width: 90%;
+    max-width: 1000px;
+    padding: 2rem 0;
+}
+
+.bookList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.bookCard {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+
+    transition: transform 0.2s ease;
+}
+
+.bookCard:hover {
+    transform: translateY(-5px);
+}
+
+.infoDiv p {
+    margin-bottom: 0.4rem;
+}
+
+.infoDiv p:first-child {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.actionsDiv {
+    display: flex;
+    justify-content: space-between;
     gap: 0.5rem;
 }
 
-.bookCard button {
-    margin-top: 0.5rem;
+button {
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
 }
 
-input:focus {
-    border: solid 1px lightgreen;
+.addBookBtn {
+    background: #22c55e;
+    color: white;
+    margin-bottom: 1rem;
+}
 
+.addBookBtn:hover {
+    background: #16a34a;
+}
+
+button[data-action="remove"] {
+    background: #ef4444;
+    color: white;
+}
+
+button[data-action="remove"]:hover {
+    background: #dc2626;
+}
+
+button[data-action="toggle"] {
+    background: #3b82f6;
+    color: white;
+}
+
+button[data-action="toggle"]:hover {
+    background: #2563eb;
 }
 
 form {
+    background: #1e293b;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+
     display: flex;
     flex-direction: column;
-    width: 50vmax;
-    height: 50vmax;
+    gap: 0.8rem;
+}
+
+input {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+fieldset {
+    border: 1px solid #334155;
+    padding: 0.5rem;
+    border-radius: 6px;
 }
 
 legend {
-    display: flex;
-
+    font-size: 0.8rem;
 }

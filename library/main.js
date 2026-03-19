@@ -1,27 +1,52 @@
 //Library array
-let myLibrary = [new BookObjectCreator("Arnold", "adenya", 100, false)];
+// let myLibrary = [new Book("Arnold", "adenya", 100, false)];
 
 //Constructor function for a book
-function BookObjectCreator(title, author, pages = "", read = false) {
-  if (title === "") return alert("Book must have title");
+class Book {
+  constructor(title, author, pages = "", read = false) {
+    if (title === "") return alert("Book must have title");
 
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.id = crypto.randomUUID();
-  this.read = read;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.id = crypto.randomUUID();
+    this.read = read;
+  }
+
+  set read(value) {
+    if (typeof value !== "boolean") {
+      console.log("Read must be true or false");
+      return;
+    }
+    this._read = value;
+  }
+
+  get read() {
+    return this._read;
+  }
+
+  set pages(value) {
+    if (value < 0) {
+      console.log("Pages can't be negative");
+      return;
+    }
+    this._pages = value;
+  }
+
+  get pages() {
+    return this._pages;
+  }
+
+  get info() {
+    return `The ${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`;
+  }
+
+  toggleRead() {
+    this.read = !this.read;
+  }
 }
 
-BookObjectCreator.prototype.info = function () {
-  console.log(
-    `The ${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`,
-  );
-};
-
-BookObjectCreator.prototype.toggleRead = function () {
-  this.read = !this.read;
-};
-
+let myLibrary = [new Book("Arnold", "adenya", 100, false)];
 //function to add book to library and first chyecks if it exists
 function addBookToLibrary(title, author, pages, read) {
   if (
@@ -30,7 +55,7 @@ function addBookToLibrary(title, author, pages, read) {
     alert("Book already exists!!");
     return;
   }
-  const book = new BookObjectCreator(title, author, pages, read);
+  const book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
 
