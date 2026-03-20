@@ -1,0 +1,170 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+
+    background-image: url("./images/hero.jpg");
+    background-size: cover;
+}
+
+
+
+/* =========================
+   HEADER / NAVBAR
+========================= */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    /* prevents overflow */
+    z-index: 10;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(231, 111, 81, 0.9);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+nav button:hover {
+    background-color: rgba(244, 162, 97, 0.9);
+    transform: scale(1.05);
+}
+
+/* =========================
+   CONTENT LAYOUT
+========================= */
+#content {
+    position: relative;
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    /* space for navbar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: column;
+}
+
+#content::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Text styling */
+h1,
+h2,
+h3 {
+    color: #ffffff;
+}
+
+p {
+    color: #f1f1f1;
+    max-width: 700px;
+    line-height: 1.5;
+}
+
+/* Images (general) */
+#content img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+}
+
+
+.menu-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Menu Cards */
+.menu-card {
+    width: 160px;
+    margin: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* Menu images */
+.menu-card img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+/* Menu text */
+.menu-card h3 {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.menu-card p {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* =========================
+   LISTS (fallback)
+========================= */
+ul {
+    list-style: disc;
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+
+@media (max-width: 600px) {
+    header {
+        justify-content: center;
+    }
+
+    #content {
+        padding: 5rem 1rem 2rem;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
