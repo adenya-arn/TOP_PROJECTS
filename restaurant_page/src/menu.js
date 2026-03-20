@@ -41,6 +41,34 @@ export default function loadMenu() {
       credit:
         " Photo by Valeria Boltneva: https://www.pexels.com/photo/delicious-molten-chocolate-lava-cake-on-plate-36183209/",
     },
+    {
+      name: "Chocolate Lava Cake",
+      desc: "Served warm with vanilla ice cream — $9",
+      img: chocolateCakeImg,
+      credit:
+        " Photo by Valeria Boltneva: https://www.pexels.com/photo/delicious-molten-chocolate-lava-cake-on-plate-36183209/",
+    },
+    {
+      name: "Chocolate Lava Cake",
+      desc: "Served warm with vanilla ice cream — $9",
+      img: chocolateCakeImg,
+      credit:
+        " Photo by Valeria Boltneva: https://www.pexels.com/photo/delicious-molten-chocolate-lava-cake-on-plate-36183209/",
+    },
+    {
+      name: "Chocolate Lava Cake",
+      desc: "Served warm with vanilla ice cream — $9",
+      img: chocolateCakeImg,
+      credit:
+        " Photo by Valeria Boltneva: https://www.pexels.com/photo/delicious-molten-chocolate-lava-cake-on-plate-36183209/",
+    },
+    {
+      name: "Chocolate Lava Cake",
+      desc: "Served warm with vanilla ice cream — $9",
+      img: chocolateCakeImg,
+      credit:
+        " Photo by Valeria Boltneva: https://www.pexels.com/photo/delicious-molten-chocolate-lava-cake-on-plate-36183209/",
+    },
   ];
 
   // Cards
